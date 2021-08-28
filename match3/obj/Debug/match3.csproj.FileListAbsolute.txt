@@ -1,0 +1,10 @@
+C:\Users\Роман\source\repos\match3\match3\bin\Debug\match3.exe.config
+C:\Users\Роман\source\repos\match3\match3\bin\Debug\match3.exe
+C:\Users\Роман\source\repos\match3\match3\bin\Debug\match3.pdb
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.csproj.AssemblyReference.cache
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.Form1.resources
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.Properties.Resources.resources
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.csproj.GenerateResource.cache
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.csproj.CoreCompileInputs.cache
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.exe
+C:\Users\Роман\source\repos\match3\match3\obj\Debug\match3.pdb

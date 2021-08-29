@@ -67,6 +67,11 @@ namespace match3
         }
         public void OnClicked(object sender, EventArgs e)
         {
+            foreach(var tile in Map)
+            {
+                if  ((Button)sender == tile.Button && tile.Type == FigureType.Null)
+                    return;
+            }
 
             if (lastButton != null)
                 lastButton.BackColor = Color.White;
@@ -92,13 +97,16 @@ namespace match3
                     Map[pressedButton.Location.Y / 50, pressedButton.Location.X / 50] = Map[lastButton.Location.Y / 50, lastButton.Location.X / 50];
                     Map[lastButton.Location.Y / 50, lastButton.Location.X / 50] = temp;
                     pressedButton.BackgroundImage = lastButton.BackgroundImage;
+                    Map[pBX, pBY].Type = Map[lBX, lBY].Type;
+                    Map[lBX, lBY].Type = temp.Type;
                     lastButton.BackgroundImage = tempImage;
                     isSelected = false;
+                    Destroy();
                 }
-
+                
             }
             lastButton = pressedButton;
-            Destroy();
+            
         }
         public void Destroy()
         {
@@ -107,15 +115,20 @@ namespace match3
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (j + 1 < 8 && Map[j, i].Type == Map[j + 1, i].Type)
+                    if (j + 1 < 8 && Map[j, i].Type != FigureType.Null && Map[j + 1, i].Type != FigureType.Null && Map[j, i].Type == Map[j + 1, i].Type)
                         countDestroy++;
                     else
                     {
-                        if (countDestroy >= 3)
+                        if (countDestroy >= 2)
                         {
                             for (int x = 0; x <= countDestroy; x++)
                             {
-                                Map[j - x, i].Button.BackgroundImage = null;
+                                Button button = Map[j - x, i].Button;
+                                Bitmap blank = new Bitmap(button.Size.Width, button.Size.Height);
+                                Graphics g = Graphics.FromImage(blank);
+                                g.Clear(Color.Black);
+                                Map[j - x, i].Button.BackgroundImage = blank;
+                                Map[j - x, i].Type = FigureType.Null;
                             }
                         }
                         countDestroy = 0;

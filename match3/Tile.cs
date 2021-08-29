@@ -13,7 +13,7 @@ namespace match3
     {
 
         public Button Button { get; }
-        public FigureType Type { get;  }
+        public FigureType Type { get; set; }
 
         public Tile(Size size, Point point, Bitmap sprite, FigureType type)
         {

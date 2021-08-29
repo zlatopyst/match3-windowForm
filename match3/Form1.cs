@@ -13,7 +13,7 @@ namespace match3
 
     public partial class Form1 : Form
     {
-        public int[,] map = new int[8,8];
+        public int[,] map = new int[8, 8];
         Bitmap[] gameSprites = new Bitmap[3];
         public Button lastButton;
         private bool isSelected = false;
@@ -23,7 +23,7 @@ namespace match3
             //gameSprites = new Image("Sprites/" + 1 + ".png");
             for (int x = 0; x < 3; x++)
             {
-                gameSprites[x] = new Bitmap($"C:\\Users\\Роман\\source\\repos\\match3\\match3\\Sprites\\{(x+1)}.png");
+                gameSprites[x] = new Bitmap($"C:\\Users\\Роман\\source\\repos\\match3\\match3\\Sprites\\{(x + 1)}.png");
             }
 
 
@@ -31,12 +31,12 @@ namespace match3
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    
+
                 }
             }
 
             Init();
-            
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace match3
                     g.DrawImage(gameSprites[figure], new Rectangle(0, 0, 50, 50));
                     tile.BackgroundImage = part;
                     map[i, j] = figure;
-                    tile.BackColor = Color.White; 
+                    tile.BackColor = Color.White;
                     tile.Click += new EventHandler(OnClicked);
                     this.Controls.Add(tile);
                 }
@@ -82,16 +82,29 @@ namespace match3
             }
             else if (isSelected)
             {
-                int temp = map[pressedButton.Location.Y / 50, pressedButton.Location.X / 50];
-                Image tempImage = pressedButton.BackgroundImage;
-                map[pressedButton.Location.Y / 50, pressedButton.Location.X / 50] = map[lastButton.Location.Y / 50, lastButton.Location.X / 50];
-                map[lastButton.Location.Y / 50, lastButton.Location.X / 50] = temp;
-                pressedButton.BackgroundImage = lastButton.BackgroundImage;
-                lastButton.BackgroundImage = tempImage;
-                isSelected = false;
+
+                    int temp = map[pressedButton.Location.Y / 50, pressedButton.Location.X / 50];
+                    Image tempImage = pressedButton.BackgroundImage;
+                int pBX = pressedButton.Location.X / 50;
+                int pBY = pressedButton.Location.Y / 50;
+                int lBX = lastButton.Location.X / 50;
+                int lBY = lastButton.Location.Y / 50;
+                if ((pBY + 1 == lBY || pBY - 1 == lBY ) & (pBX  == lBX) ||
+                    (pBX + 1 == lBX || pBX - 1 == lBX) & (pBY == lBY))
+
+                {
+                    map[pressedButton.Location.Y / 50, pressedButton.Location.X / 50] = map[lastButton.Location.Y / 50, lastButton.Location.X / 50];
+                    map[lastButton.Location.Y / 50, lastButton.Location.X / 50] = temp;
+                    pressedButton.BackgroundImage = lastButton.BackgroundImage;
+                    lastButton.BackgroundImage = tempImage;
+                    isSelected = false;
+                }
+                
             }
             lastButton = pressedButton;
         }
     }
 }
+    
+
 
